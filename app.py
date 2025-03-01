@@ -39,12 +39,12 @@ city_encoded = le.fit_transform(city_names)
 city_mapping = dict(zip(city_names, city_encoded))
 
 # Streamlit UI
-st.title("Crime Rate Prediction App")
+st.title("🔍 Crime Rate Prediction App")
 
 # User Inputs
-selected_city = st.selectbox("Select City", city_names)
-selected_crime = st.selectbox("Select Crime Type", crime_types)
-selected_year = st.slider("Select Year", 2020, 2026, 2022)
+selected_city = st.selectbox("🏙️ Select City", city_names)
+selected_crime = st.selectbox("🚔 Select Crime Type", crime_types)
+selected_year = st.selectbox("📅 Select Year", [2020, 2021, 2022, 2023, 2024, 2025, 2026])
 
 # Convert user input into model features
 city_code = city_mapping[selected_city]
@@ -56,25 +56,28 @@ year_diff = selected_year - 2020
 adjusted_population = population + (0.01 * year_diff * population)
 
 # Predict crime rate
-if st.button("Predict Crime Rate"):
+if st.button("🔮 Predict Crime Rate"):
     crime_rate = model.predict([[selected_year, city_code, adjusted_population, crime_code]])[0]
 
     # Crime Severity Classification
     if crime_rate <= 2:
-        crime_status = "Low Crime Area"
+        crime_status = "🟢 Low Crime Area"
+        color = "green"
     elif crime_rate <= 5:
-        crime_status = "High Crime Area"
+        crime_status = "🟠 High Crime Area"
+        color = "orange"
     else:
-        crime_status = "Very High Crime Area"
+        crime_status = "🔴 Very High Crime Area"
+        color = "red"
 
     # Calculate estimated crime cases
     estimated_cases = math.ceil(crime_rate * adjusted_population)
 
     # Display results
-    st.subheader("Prediction Results")
+    st.subheader("📊 Prediction Results")
     st.write(f"**City:** {selected_city}")
     st.write(f"**Crime Type:** {selected_crime}")
     st.write(f"**Year:** {selected_year}")
-    st.write(f"**Predicted Crime Status:** {crime_status}")
+    st.markdown(f"**Predicted Crime Status:** <span style='color:{color}; font-size:18px'>{crime_status}</span>", unsafe_allow_html=True)
     st.write(f"**Crime Rate:** {crime_rate:.2f}")
     st.write(f"**Estimated Cases:** {estimated_cases}")
