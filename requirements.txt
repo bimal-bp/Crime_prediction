@@ -7,3 +7,4 @@ flask
 matplotlib
 seaborn
 pickle-mixin
+xgboost
