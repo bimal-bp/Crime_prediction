@@ -6,7 +6,7 @@ import math
 from sklearn.preprocessing import LabelEncoder
 
 # Load the trained model
-model = pickle.load(open('Model/model.pkl', 'rb'))
+model = pickle.load(open('crime_rate_model.pkl', 'rb'))
 
 # Define city names and crime types
 city_names = [
