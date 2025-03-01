@@ -44,7 +44,7 @@ st.title("Crime Rate Prediction App")
 # User Inputs
 selected_city = st.selectbox("Select City", city_names)
 selected_crime = st.selectbox("Select Crime Type", crime_types)
-selected_year = st.slider("Select Year", 2020, 2024, 2022)
+selected_year = st.slider("Select Year", 2020, 2026, 2022)
 
 # Convert user input into model features
 city_code = city_mapping[selected_city]
