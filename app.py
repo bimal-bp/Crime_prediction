@@ -64,10 +64,10 @@ if st.button("🔮 Predict Crime Rate"):
         crime_status = "🟢 Low Crime Area"
         color = "green"
     elif crime_rate <= 5:
-        crime_status = "🟠 High Crime Area"
+        crime_status = "🟠 Moderate Crime Area"
         color = "orange"
     else:
-        crime_status = "🔴 Very High Crime Area"
+        crime_status = "🔴  High Crime Area"
         color = "red"
 
     # Calculate estimated crime cases
