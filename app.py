@@ -89,7 +89,7 @@ if st.button("🗺️ View Andhra Pradesh Map"):
     st.subheader("Map of Andhra Pradesh")
     
     # Create a base map centered around Andhra Pradesh
-    map_andhra = folium.Map(location=[16.5000, 80.7500], zoom_start=7)
+    map_andhra = folium.Map(location=[16.5000, 80.7500], zoom_start=12)
 
     # Add a marker for the state capital (Amaravati)
     folium.Marker(
