@@ -84,27 +84,19 @@ if st.button("🔮 Predict Crime Rate"):
     st.write(f"**Crime Rate:** {crime_rate:.2f}")
     st.write(f"**Estimated Cases:** {estimated_cases}")
 
-# Add a button to view the map
-if st.button("🗺️ View Map"):
-    st.subheader("Map of Machilipatnam, Eluru, and Bhimavaram")
+# Add a button to view the map of Andhra Pradesh
+if st.button("🗺️ View Andhra Pradesh Map"):
+    st.subheader("Map of Andhra Pradesh")
     
-    # Coordinates for the cities
-    cities = {
-        "Machilipatnam": (16.1875, 81.1389),
-        "Eluru": (16.7050, 81.1000),
-        "Bhimavaram": (16.5400, 81.5239)
-    }
-
     # Create a base map centered around Andhra Pradesh
-    map_andhra = folium.Map(location=[16.5000, 80.7500], zoom_start=8)
+    map_andhra = folium.Map(location=[16.5000, 80.7500], zoom_start=7)
 
-    # Add markers for each city
-    for city, coordinates in cities.items():
-        folium.Marker(
-            location=coordinates,
-            popup=city,
-            icon=folium.Icon(color='blue', icon='info-sign')
-        ).add_to(map_andhra)
+    # Add a marker for the state capital (Amaravati)
+    folium.Marker(
+        location=[16.5136, 80.5165],
+        popup="Amaravati (Capital)",
+        icon=folium.Icon(color='blue', icon='info-sign')
+    ).add_to(map_andhra)
 
     # Display the map in Streamlit
     folium_static(map_andhra)
