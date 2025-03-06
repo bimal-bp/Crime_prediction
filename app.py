@@ -35,7 +35,7 @@ year = st.number_input("Enter Year (2024 and beyond)", min_value=2025, step=1)
 
 if st.button("Predict Crime Rate"):
     pop = population[city_code]
-    year_diff = int(year) - 2011
+    year_diff = int(year) - 2017
     pop = pop + 0.01 * year_diff * pop  # Population growth assumption: 1% per year
 
     # Model prediction
