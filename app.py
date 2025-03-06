@@ -58,6 +58,5 @@ if st.button("Predict Crime Rate"):
     st.write(f"📍 **City:** {city_names[city_code]}")
     st.write(f"⚖ **Crime Type:** {crimes_names[crime_code]}")
     st.write(f"📅 **Year:** {year}")
-    st.write(f"📈 **Predicted Crime Rate:** {crime_rate:.2f}")
     st.write(f"🚔 **Predicted Cases:** {cases}")
     st.write(f"⚠ **Crime Severity:** {crime_status}")
