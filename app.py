@@ -31,7 +31,7 @@ st.title("Crime Rate Prediction")
 # User inputs
 city_code = st.selectbox("Select City", options=list(city_names.keys()), format_func=lambda x: city_names[x])
 crime_code = st.selectbox("Select Crime Type", options=list(crimes_names.keys()), format_func=lambda x: crimes_names[x])
-year = st.number_input("Enter Year (>= 2011)", min_value=2011, step=1)
+year = st.number_input("Enter Year (2024 and beyond)", min_value=2024, step=1)
 
 if st.button("Predict Crime Rate"):
     pop = population[city_code]
