@@ -3,7 +3,7 @@ import pickle
 import math
 
 # Load the trained model
-model = pickle.load(open('Model/model.pkl', 'rb'))
+model = pickle.load(open('model (5).pkl', 'rb'))
 
 # City and crime type mappings
 city_names = {
