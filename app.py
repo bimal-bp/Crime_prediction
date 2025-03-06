@@ -42,11 +42,11 @@ if st.button("Predict Crime Rate"):
     crime_rate = model.predict([[year, city_code, pop, crime_code]])[0]
 
     # Determine crime status
-    if crime_rate <= 1:
+    if crime_rate <= 0.15:
         crime_status = "Very Low Crime Area"
-    elif crime_rate <= 5:
+    elif crime_rate <= 0.50:
         crime_status = "Low Crime Area"
-    elif crime_rate <= 15:
+    elif crime_rate <= 2.5:
         crime_status = "High Crime Area"
     else:
         crime_status = "Very High Crime Area"
