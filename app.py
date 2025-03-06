@@ -56,13 +56,13 @@ if st.button("🚔 Predict Crime Rate"):
     crime_rate = model.predict([[year, city_code, pop, crime_code]])[0]
 
     # Determine crime status with color coding
-    if crime_rate <= 0.25:
+    if crime_rate <= 35:
         crime_status = "🟢 Very Low Crime Area"
         color = "green"
-    elif crime_rate <= 1:
+    elif crime_rate <= 135:
         crime_status = "🟡 Low Crime Area"
         color = "yellow"
-    elif crime_rate <= 10:
+    elif crime_rate <= 210:
         crime_status = "🟠 High Crime Area"
         color = "orange"
     else:
