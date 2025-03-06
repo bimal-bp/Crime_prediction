@@ -25,15 +25,29 @@ population = {
     '14': 184.10, '15': 25.00, '16': 20.50, '17': 50.50, '18': 45.80
 }
 
+# Crime prevention suggestions
+crime_suggestions = {
+    '0': "Encourage educational programs and mentorship initiatives for youth.",
+    '1': "Strengthen legal protection and create awareness about rights.",
+    '2': "Promote inclusivity and ensure strict legal enforcement.",
+    '3': "Enhance neighborhood watch programs and personal security for elders.",
+    '4': "Increase child safety measures and strengthen family awareness.",
+    '5': "Promote gender equality and enforce strict laws against offenders.",
+    '6': "Use strong passwords, be cautious online, and report suspicious activities.",
+    '7': "Be vigilant about financial frauds, verify sources before transactions.",
+    '8': "Educate children about safety, avoid sharing personal details with strangers.",
+    '9': "Improve community policing and strengthen law enforcement presence."
+}
+
 # Streamlit App
-st.title("Crime Rate Prediction")
+st.title("🔍 Crime Rate Prediction")
 
 # User inputs
-city_code = st.selectbox("Select City", options=list(city_names.keys()), format_func=lambda x: city_names[x])
-crime_code = st.selectbox("Select Crime Type", options=list(crimes_names.keys()), format_func=lambda x: crimes_names[x])
-year = st.number_input("Enter Year (2024 and beyond)", min_value=2025, step=1)
+city_code = st.selectbox("📍 Select City", options=list(city_names.keys()), format_func=lambda x: city_names[x])
+crime_code = st.selectbox("⚖ Select Crime Type", options=list(crimes_names.keys()), format_func=lambda x: crimes_names[x])
+year = st.number_input("📅 Enter Year (2024 and beyond)", min_value=2025, step=1)
 
-if st.button("Predict Crime Rate"):
+if st.button("🚔 Predict Crime Rate"):
     pop = population[city_code]
     year_diff = int(year) - 2017
     pop = pop + 0.01 * year_diff * pop  # Population growth assumption: 1% per year
@@ -41,22 +55,30 @@ if st.button("Predict Crime Rate"):
     # Model prediction
     crime_rate = model.predict([[year, city_code, pop, crime_code]])[0]
 
-    # Determine crime status
+    # Determine crime status with color coding
     if crime_rate <= 0.15:
-        crime_status = "Very Low Crime Area"
+        crime_status = "🟢 Very Low Crime Area"
+        color = "green"
     elif crime_rate <= 0.50:
-        crime_status = "Low Crime Area"
+        crime_status = "🟡 Low Crime Area"
+        color = "yellow"
     elif crime_rate <= 2.5:
-        crime_status = "High Crime Area"
+        crime_status = "🟠 High Crime Area"
+        color = "orange"
     else:
-        crime_status = "Very High Crime Area"
+        crime_status = "🔴 Very High Crime Area"
+        color = "red"
 
     cases = math.ceil(crime_rate * pop)
 
-    # Display results
-    st.subheader("Crime Prediction Results:")
+    # Display results with styling
+    st.subheader("🔎 Crime Prediction Results:")
     st.write(f"📍 **City:** {city_names[city_code]}")
     st.write(f"⚖ **Crime Type:** {crimes_names[crime_code]}")
     st.write(f"📅 **Year:** {year}")
-    st.write(f"🚔 **Predicted Cases:** {cases}")
-    st.write(f"⚠ **Crime Severity:** {crime_status}")
+    st.markdown(f"<h3 style='color:{color};'>🚔 Predicted Cases: {cases}</h3>", unsafe_allow_html=True)
+    st.markdown(f"<h3 style='color:{color};'>⚠ Crime Severity: {crime_status}</h3>", unsafe_allow_html=True)
+
+    # Crime Prevention Suggestion
+    st.markdown("### 💡 Safety Tip:")
+    st.write(f"🛑 {crime_suggestions[crime_code]}")
